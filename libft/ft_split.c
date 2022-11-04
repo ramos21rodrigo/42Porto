@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 19:42:18 by roramos           #+#    #+#             */
-/*   Updated: 2022/10/17 17:11:37 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/04 18:25:31 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ char	**ft_split(char const *s, char c)
 	int		j;
 	int		word;
 	char	**str;
-	int		size;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	j = -1;
 	word = words_counter(s, c);
@@ -64,11 +65,10 @@ char	**ft_split(char const *s, char c)
 	{
 		while (s[i] == c)
 			i++;
-		size = letters_in_word(s, c, i);
-		str[j] = ft_substr(s, i, size);
+		str[j] = ft_substr(s, i, letters_in_word(s, c, i));
 		if (!str)
 			return (NULL);
-		i += size;
+		i += letters_in_word(s, c, i);
 	}
 	str[j] = 0;
 	return (str);

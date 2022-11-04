@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 18:54:34 by roramos           #+#    #+#             */
-/*   Updated: 2022/10/13 15:50:52 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/04 16:55:45 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ char	*ft_strnstr(const char *s1, const char *s2, unsigned int n)
 	unsigned int	i;
 	unsigned int	j;
 
+	if (n == 0 && !*s2)
+		return ((char *)s1);
+	if (n == 0)
+		return (NULL);
 	if (!*s2)
 		return ((char *)s1);
 	i = 0;
