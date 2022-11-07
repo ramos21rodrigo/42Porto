@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:57:09 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/04 18:56:23 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/07 18:13:06 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int find_convertion(char c, va_list arg)
         return (ft_print_str(va_arg(arg, char *)));
     else if (c == 'p')
         return (ft_print_ptr(va_arg(arg, unsigned long long)));
-    else if (c == 'd' || c == 'i' || c == 'u')
+    else if (c == 'd' || c == 'i')
         return (ft_print_num(va_arg(arg, int)));
     return 0;
     

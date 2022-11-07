@@ -6,7 +6,7 @@
 #    By: roramos <roramos@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 19:49:39 by roramos           #+#    #+#              #
-#    Updated: 2022/11/07 15:59:23 by roramos          ###   ########.fr        #
+#    Updated: 2022/11/07 18:48:54 by roramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,16 +25,13 @@ BONUS_OBJS = ${BONUS_SRCS:.c=.o}
 BONUS_SRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c\
     ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c 
 
-.o.c:
-	${CC} ${FLAGS} -c $< -o $@
-
 ${NAME}: ${OBJS}
 	ar rcs ${NAME} ${OBJS}
 
 bonus: ${BONUS_OBJS}
 	ar rcs ${NAME} ${BONUS_OBJS}
 
-all: ${NAME} bonus
+all: ${NAME}
 
 clean:
 	rm -rf *.o
@@ -44,4 +41,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re test
+.PHONY: all bonus clean fclean re
