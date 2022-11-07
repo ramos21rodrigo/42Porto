@@ -6,70 +6,49 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 14:59:21 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/04 17:01:35 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/07 15:59:14 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	get_initial_set_size(char const *s1, char const *set)
+static int	ft_set(char c, const char *set)
 {
-	int	i;
-	int	count;
+	size_t	i;
 
-	i = -1;
-	count = 0;
-	while (set[++i])
+	i = 0;
+	while (set[i])
 	{
-		if (set[i] == *s1)
-		{
-			s1++;
-			i = -1;
-			count++;
-		}
+		if (set[i] == c)
+			return (1);
+		i++;
 	}
-	return (count);
-}
-
-static int	get_final_set_size(char const *s1, char const *set)
-{
-	int	i;
-	int	count;
-
-	if (!*s1)
-		return (0);
-	i = -1;
-	count = 0;
-	while (*s1)
-		s1++;
-	--s1;
-	while (set[++i])
-	{
-		if (set[i] == *s1)
-		{
-			s1--;
-			i = -1;
-			count++;
-		}
-	}
-	return (count);
+	return (0);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*str;
-	int		size;
+	size_t	i;
+	size_t	beg;
+	size_t	final;
 
 	if (!s1)
 		return (NULL);
 	if (!set)
 		return (ft_strdup(s1));
-	size = ft_strlen(s1) + 1;
-	str = (char *)malloc(size * sizeof(*s1));
+	beg = 0;
+	while (s1[beg] && ft_set(s1[beg], set))
+		beg++;
+	final = ft_strlen(s1);
+	while (final > beg && ft_set(s1[final - 1], set))
+		final--;
+	str = (char *)malloc(sizeof(*s1) * (final - beg + 1));
 	if (!str)
 		return (NULL);
-	s1 += get_initial_set_size(s1, set);
-	size = ft_strlen(s1) - get_final_set_size(s1, set) + 1;
-	ft_strlcpy(str, s1, size);
-	return ((char *)str);
+	i = 0;
+	while (beg < final)
+		str[i++] = s1[beg++];
+	str[i] = 0;
+	return (str);
 }
