@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 18:45:04 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/04 16:34:09 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/08 14:46:07 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,11 @@ int	ft_memcmp(const void *s1, const void *s2, unsigned int n)
 		str1++;
 		str2++;
 	}
+	return (0);
+}
+
+int main()
+{
+	printf("%d", ft_memcmp("t\200", "t\0", 2));
 	return (0);
 }

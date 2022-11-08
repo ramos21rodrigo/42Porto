@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 19:42:18 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/04 18:25:31 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/08 16:16:57 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,18 @@ char	**ft_split(char const *s, char c)
 	}
 	str[j] = 0;
 	return (str);
+}
+
+void main()
+{
+	char *a = "ola\0 nigga\0 asdasd\0das\0";
+	char **str;
+	
+	str = ft_split(a, '\0');
+	printf("%s", str[0]);
+	printf("%s", str[1]);
+	printf("%s", str[2]);
+	
+
+
 }
