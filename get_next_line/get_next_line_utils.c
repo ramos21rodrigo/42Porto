@@ -6,7 +6,7 @@
 /*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:04:44 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/08 12:10:16 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/09 01:04:43 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@ int ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
+}
+
+char *ft_strchr(const char *s, int c)
+{
+	char *str;
+
+	str = (char *)s;
+	while (*str != c)
+	{
+		if (*str == '\0')
+			return (NULL);
+		str++;
+	}
+	return (str);
 }
 
 char *ft_strjoin(char const *s1, char const *s2)

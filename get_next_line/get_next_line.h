@@ -6,7 +6,7 @@
 /*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:21:02 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/08 12:17:05 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/08 22:46:59 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@
 char *get_next_line(int fd);
 char *ft_strjoin(char const *s1, char const *s2);
 int ft_strlen(const char *s);
+char *ft_strchr(const char *s, int c);
 
 #endif
