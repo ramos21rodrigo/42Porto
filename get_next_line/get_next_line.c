@@ -6,7 +6,7 @@
 /*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:21:06 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/09 02:03:34 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/09 22:15:59 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,20 +94,17 @@ char *get_next_line(int fd)
 	return (output_text);
 }
 
-// int main()
-// {
-// 	int fd = open("a.txt", O_RDONLY);
-// 	char *a;
+int main()
+{
+	int fd = open("a.txt", O_RDONLY);
+	char *a;
 
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
+	while ((a = get_next_line(fd)))
+	{
+		printf("%s", a);
+	}
 
-// 	return 0;
-// }
+	// printf("%s", get_next_line(fd));
+
+	return 0;
+}
