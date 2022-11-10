@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 12:04:44 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/10 17:08:38 by roramos          ###   ########.fr       */
+/*   Created: 2022/11/10 12:51:45 by roramos           #+#    #+#             */
+/*   Updated: 2022/11/10 14:26:51 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_strlen(const char *s)
 {
@@ -36,7 +36,7 @@ char	*ft_strchr(const char *s, int c)
 	return (str);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*start;
 	char	*str;
@@ -53,4 +53,47 @@ char	*ft_strjoin(char *s1, char *s2)
 		*str++ = *s2++;
 	*str = '\0';
 	return (start);
+}
+
+static int	digit_count(long int i)
+{
+	int	count;
+
+	count = 0;
+	if (i < 0)
+	{
+		i *= -1;
+		count++;
+	}
+	while (i > 0)
+	{
+		i /= 10;
+		count++;
+	}
+	return (count);
+}
+
+char	*ft_itoa(int n)
+{
+	char		*str;
+	int			i;
+	long int	nb;
+
+	nb = n;
+	i = digit_count(nb);
+	str = malloc(i * sizeof(char) + 1);
+	if (!str)
+		return (0);
+	str[i--] = 0;
+	if (nb < 0)
+	{
+		str[0] = '-';
+		nb *= -1;
+	}
+	while (nb > 0)
+	{
+		str[i--] = nb % 10 + '0';
+		nb /= 10;
+	}
+	return (str);
 }

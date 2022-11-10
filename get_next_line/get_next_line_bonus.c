@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 11:21:06 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/10 17:12:36 by roramos          ###   ########.fr       */
+/*   Created: 2022/11/10 12:51:36 by roramos           #+#    #+#             */
+/*   Updated: 2022/11/10 14:47:31 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-char	*ft_free(char *text, char *buf)
+int	ft_get_index_of(const char *s1, const char *s2)
 {
-	char	*temp;
+	unsigned int	i;
+	unsigned int	j;
 
-	temp = ft_strjoin(text, buf);
-	free(text);
-	return (temp);
+	i = 0;
+    printf("%s", s1);
+	while (s1[i])
+	{
+		j = 0;
+		while (s2[j] == s1[i + j])
+			if (!s2[++j])
+				return (i);
+		i++;
+	}
+	return (-1);
 }
 
 char	*read_first_line(int fd, char *text)
 {
 	char	*buffer;
 	int		bytes_read;
-	char	*temp;
 
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
@@ -35,17 +43,11 @@ char	*read_first_line(int fd, char *text)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
-		{
-			free (buffer);
 			return (NULL);
-		}
 		buffer[bytes_read] = '\0';
 		text = ft_strjoin(text, buffer);
 	}
-	temp = ft_strjoin(text, "");
-	free (text);
-	free (buffer);
-	return (temp);
+	return (text);
 }
 
 char	*get_line(char *text)
@@ -90,39 +92,52 @@ char	*clean_first_line(char *text)
 	while (text[++i])
 		str[j++] = text[i];
 	str[j] = '\0';
-	free (text);
 	return (str);
 }
 
 char	*get_next_line(int fd)
 {
 	char		*output_text;
-	static char	*text;
+	static char	**text;
+    int         index;
 
 	if (BUFFER_SIZE <= 0 || fd <= 0 || read(fd, NULL, 0) != 0)
 		return (NULL);
-	if (!text)
-		text = "\0";
-	text = read_first_line(fd, text);
-	if (!*text)
+    text = malloc(1 * sizeof(char *));
+    if (!text)
+        return (NULL);
+    if (!text[0])
+		text[0] = "";
+    index = ft_get_index_of(text[0], ft_itoa(fd));
+    if (index == -1)
+    {
+        text[0] = ft_strjoin(text[0], ft_itoa(fd));
+        text[0] = ft_strjoin(text[0], " ");
+    }
+    printf("i%d", index);
+    return (NULL);
+	text[0] = read_first_line(fd, text[0]);
+	if (!*text[0])
 		return (NULL);
-	output_text = get_line(text);
-	text = clean_first_line(text);
+	output_text = get_line(text[0]);
+	text[0] = clean_first_line(text[0]);
 	return (output_text);
 }
 
-/* 
 int main()
 {
 	int fd = open("a.txt", O_RDONLY);
 	char *a;
 
-	while ((a = get_next_line(fd)))
+	/* while ((a = get_next_line(fd)))
 	{
 		printf("%s", a);
-	}
+	} */
 
-	// printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 
 	return 0;
-} */
+}
