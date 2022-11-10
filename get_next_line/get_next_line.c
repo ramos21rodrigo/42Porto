@@ -3,29 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:21:06 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/10 17:12:36 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/10 21:14:08 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_free(char *text, char *buf)
+char *ft_free(char *text, char *buf)
 {
-	char	*temp;
+	char *temp;
 
 	temp = ft_strjoin(text, buf);
 	free(text);
 	return (temp);
 }
 
-char	*read_first_line(int fd, char *text)
+char *read_first_line(int fd, char *text)
 {
-	char	*buffer;
-	int		bytes_read;
-	char	*temp;
+	char *buffer;
+	int bytes_read;
 
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
@@ -36,22 +35,20 @@ char	*read_first_line(int fd, char *text)
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 		{
-			free (buffer);
+			free(buffer);
 			return (NULL);
 		}
 		buffer[bytes_read] = '\0';
 		text = ft_strjoin(text, buffer);
 	}
-	temp = ft_strjoin(text, "");
-	free (text);
-	free (buffer);
-	return (temp);
+	free(buffer);
+	return (text);
 }
 
-char	*get_line(char *text)
+char *get_line(char *text)
 {
-	int		i;
-	char	*str;
+	int i;
+	char *str;
 
 	i = 0;
 	while (text[i] && text[i] != '\n')
@@ -74,11 +71,11 @@ char	*get_line(char *text)
 	return (str);
 }
 
-char	*clean_first_line(char *text)
+char *clean_first_line(char *text)
 {
-	int		i;
-	int		j;
-	char	*str;
+	int i;
+	int j;
+	char *str;
 
 	i = 0;
 	j = 0;
@@ -90,14 +87,14 @@ char	*clean_first_line(char *text)
 	while (text[++i])
 		str[j++] = text[i];
 	str[j] = '\0';
-	free (text);
+	free(text);
 	return (str);
 }
 
-char	*get_next_line(int fd)
+char *get_next_line(int fd)
 {
-	char		*output_text;
-	static char	*text;
+	char *output_text;
+	static char *text;
 
 	if (BUFFER_SIZE <= 0 || fd <= 0 || read(fd, NULL, 0) != 0)
 		return (NULL);
@@ -111,7 +108,6 @@ char	*get_next_line(int fd)
 	return (output_text);
 }
 
-/* 
 int main()
 {
 	int fd = open("a.txt", O_RDONLY);
@@ -125,4 +121,4 @@ int main()
 	// printf("%s", get_next_line(fd));
 
 	return 0;
-} */
+}

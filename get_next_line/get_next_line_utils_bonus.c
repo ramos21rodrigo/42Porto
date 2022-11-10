@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:51:45 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/10 14:26:51 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/10 21:30:08 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-int	ft_strlen(const char *s)
+int ft_strlen(const char *s)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (s[i])
@@ -22,9 +22,9 @@ int	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char *ft_strchr(const char *s, int c)
 {
-	char	*str;
+	char *str;
 
 	str = (char *)s;
 	while (*str != c)
@@ -36,10 +36,10 @@ char	*ft_strchr(const char *s, int c)
 	return (str);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char *ft_strjoin(char *s1, char *s2)
 {
-	char	*start;
-	char	*str;
+	char *start;
+	char *str;
 
 	if (!s1)
 		return (NULL);
@@ -55,9 +55,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (start);
 }
 
-static int	digit_count(long int i)
+static int digit_count(long int i)
 {
-	int	count;
+	int count;
 
 	count = 0;
 	if (i < 0)
@@ -73,11 +73,11 @@ static int	digit_count(long int i)
 	return (count);
 }
 
-char	*ft_itoa(int n)
+char *ft_itoa(int n)
 {
-	char		*str;
-	int			i;
-	long int	nb;
+	char *str;
+	int i;
+	long int nb;
 
 	nb = n;
 	i = digit_count(nb);
