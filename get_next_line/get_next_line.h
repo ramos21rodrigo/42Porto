@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:21:02 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/10 16:54:33 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/11 15:43:01 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,6 @@ char	*ft_strchr(const char *s, int c);
 char	*read_first_line(int fd, char *text);
 char	*get_line(char *text);
 char	*clean_first_line(char *text);
+void	*ft_calloc(unsigned int count, unsigned int size);
+
 #endif

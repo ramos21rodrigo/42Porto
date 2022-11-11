@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:51:45 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/10 21:30:08 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/11 18:19:54 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char *ft_strjoin(char *s1, char *s2)
 
 	if (!s1)
 		return (NULL);
-	str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	start = str;
@@ -55,22 +55,22 @@ char *ft_strjoin(char *s1, char *s2)
 	return (start);
 }
 
-static int digit_count(long int i)
+void	*ft_calloc(unsigned int count, unsigned int size)
 {
-	int count;
+	void			*pointer;
+	unsigned char	*p;
+	unsigned int	n;
 
-	count = 0;
-	if (i < 0)
-	{
-		i *= -1;
-		count++;
-	}
-	while (i > 0)
-	{
-		i /= 10;
-		count++;
-	}
-	return (count);
+	pointer = malloc(count * size);
+	if (!pointer)
+		return (NULL);
+	//-ft_bzero
+	p = pointer;
+	n = size * count;
+	while (n--)
+		*p++ = '\0';
+	//-
+	return (pointer);
 }
 
 char *ft_itoa(int n)
@@ -80,16 +80,19 @@ char *ft_itoa(int n)
 	long int nb;
 
 	nb = n;
-	i = digit_count(nb);
-	str = malloc(i * sizeof(char) + 1);
+	//- Digit_count
+	i = 0;
+	while (nb > 0)
+	{
+		nb /= 10;
+		i++;
+	}
+	nb = n;
+	//-
+	str = ft_calloc(i + 1,sizeof(char));
 	if (!str)
 		return (0);
 	str[i--] = 0;
-	if (nb < 0)
-	{
-		str[0] = '-';
-		nb *= -1;
-	}
 	while (nb > 0)
 	{
 		str[i--] = nb % 10 + '0';
