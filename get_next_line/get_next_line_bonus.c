@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:51:36 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/11 18:27:44 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/11 18:45:10 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,15 @@ char	*clean_first_line(char *text)
 char	*get_next_line(int fd)
 {
 	char		*output_text;
-	static char	*text;
+	static char	*text[FOPEN_MAX];
 
 	if (BUFFER_SIZE <= 0 || fd <= 0 || read(fd, NULL, 0) != 0)
 		return (NULL);
-	text = read_first_line(fd, text);
-	if (!text)
+	text[fd] = read_first_line(fd, text[fd]);
+	if (!*text)
 		return (NULL);
-	output_text = get_line(text);
-	text = clean_first_line(text);
+	output_text = get_line(text[fd]);
+	text[fd] = clean_first_line(text[fd]);
 	return (output_text);
 }
 
@@ -118,10 +118,10 @@ char	*get_next_line(int fd)
 	int fdc = open("c.txt", O_RDONLY);
 	char *a;
 
-	 while ((a = get_next_line(fd)))
+	while ((a = get_next_line(fd)))
 	{
 		printf("%s", a);
-	}  
+	}   
 
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
@@ -136,3 +136,18 @@ char	*get_next_line(int fd)
 
 	return 0; 
 }  */
+
+/* int main()
+{
+	int fd = open("a.txt", O_RDONLY);
+	char *a;
+
+	while ((a = get_next_line(fd)))
+	{
+		printf("%s", a);
+	}
+
+	// printf("%s", get_next_line(fd));
+
+	return 0;
+} */

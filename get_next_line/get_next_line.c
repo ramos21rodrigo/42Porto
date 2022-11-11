@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:21:06 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/11 18:28:53 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/11 18:42:16 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*read_first_line(int fd, char *text)
 	char	*buffer;
 	int		bytes_read;
 
-	if(!text)
+	if (!text)
 		text = ft_calloc(1, 1);
 	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (!buffer)
@@ -110,7 +110,6 @@ char	*get_next_line(int fd)
 	text = clean_first_line(text);
 	return (output_text);
 }
-
 
 /* int main()
 {

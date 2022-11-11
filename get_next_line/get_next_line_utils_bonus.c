@@ -6,15 +6,15 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:51:45 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/11 18:19:54 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/11 18:30:43 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-int ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -22,9 +22,9 @@ int ft_strlen(const char *s)
 	return (i);
 }
 
-char *ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	char *str;
+	char	*str;
 
 	str = (char *)s;
 	while (*str != c)
@@ -36,12 +36,12 @@ char *ft_strchr(const char *s, int c)
 	return (str);
 }
 
-char *ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char *start;
-	char *str;
+	char	*start;
+	char	*str;
 
-	if (!s1)
+	if (!s1 || !s2)
 		return (NULL);
 	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!str)
@@ -55,48 +55,22 @@ char *ft_strjoin(char *s1, char *s2)
 	return (start);
 }
 
+void	ft_bzero(void *s, unsigned int n)
+{
+	unsigned char	*p;
+
+	p = s;
+	while (n--)
+		*p++ = '\0';
+}
+
 void	*ft_calloc(unsigned int count, unsigned int size)
 {
-	void			*pointer;
-	unsigned char	*p;
-	unsigned int	n;
+	void	*pointer;
 
 	pointer = malloc(count * size);
 	if (!pointer)
 		return (NULL);
-	//-ft_bzero
-	p = pointer;
-	n = size * count;
-	while (n--)
-		*p++ = '\0';
-	//-
+	ft_bzero(pointer, size * count);
 	return (pointer);
-}
-
-char *ft_itoa(int n)
-{
-	char *str;
-	int i;
-	long int nb;
-
-	nb = n;
-	//- Digit_count
-	i = 0;
-	while (nb > 0)
-	{
-		nb /= 10;
-		i++;
-	}
-	nb = n;
-	//-
-	str = ft_calloc(i + 1,sizeof(char));
-	if (!str)
-		return (0);
-	str[i--] = 0;
-	while (nb > 0)
-	{
-		str[i--] = nb % 10 + '0';
-		nb /= 10;
-	}
-	return (str);
 }
