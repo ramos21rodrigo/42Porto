@@ -17,7 +17,6 @@
 #  define BUFFER_SIZE 1234
 # endif
 
-# include <limits.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>

@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:51:36 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/11 18:45:10 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/12 19:06:56 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ char	*get_next_line(int fd)
 	char		*output_text;
 	static char	*text[FOPEN_MAX];
 
-	if (BUFFER_SIZE <= 0 || fd <= 0 || read(fd, NULL, 0) != 0)
+	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd, NULL, 0) != 0)
 		return (NULL);
 	text[fd] = read_first_line(fd, text[fd]);
-	if (!*text)
+	if (!text[fd])
 		return (NULL);
 	output_text = get_line(text[fd]);
 	text[fd] = clean_first_line(text[fd]);
@@ -135,19 +135,4 @@ char	*get_next_line(int fd)
 	printf("%s", get_next_line(fd));
 
 	return 0; 
-}  */
-
-/* int main()
-{
-	int fd = open("a.txt", O_RDONLY);
-	char *a;
-
-	while ((a = get_next_line(fd)))
-	{
-		printf("%s", a);
-	}
-
-	// printf("%s", get_next_line(fd));
-
-	return 0;
 } */

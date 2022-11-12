@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:21:06 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/11 18:42:16 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/12 14:38:58 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	*clean_first_line(char *text)
 		free (text);
 		return (NULL);
 	}
-	str = ft_calloc((ft_strlen(text) - i + 1), sizeof(*text));
+	str = ft_calloc((ft_strlen(text) - i + 1), sizeof(char));
 	if (!str)
 		return (NULL);
 	while (text[++i])
@@ -101,7 +101,7 @@ char	*get_next_line(int fd)
 	char		*output_text;
 	static char	*text;
 
-	if (BUFFER_SIZE <= 0 || fd <= 0 || read(fd, NULL, 0) != 0)
+	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd, NULL, 0) != 0)
 		return (NULL);
 	text = read_first_line(fd, text);
 	if (!text)
@@ -111,12 +111,12 @@ char	*get_next_line(int fd)
 	return (output_text);
 }
 
-/* int main()
+/*int main()
 {
 	int fd = open("a.txt", O_RDONLY);
 	char *a;
 
-	while ((a = get_next_line(fd)))
+	while ((a = get_next_line(0)))
 	{
 		printf("%s", a);
 	}
