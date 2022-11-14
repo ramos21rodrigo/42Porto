@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:51:36 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/12 19:06:56 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/13 21:11:40 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char	*get_next_line(int fd)
 	char		*output_text;
 	static char	*text[FOPEN_MAX];
 
-	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd, NULL, 0) != 0)
+	if (BUFFER_SIZE <= 0 || fd < 0 || fd > FOPEN_MAX)
 		return (NULL);
 	text[fd] = read_first_line(fd, text[fd]);
 	if (!text[fd])
