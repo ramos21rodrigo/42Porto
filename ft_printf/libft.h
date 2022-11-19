@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 20:27:18 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/03 18:13:03 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/17 14:01:45 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int				ft_memcmp(const void *s1, const void *s2, unsigned int n);
 char			*ft_strnstr(const char *s1, const char *s2, unsigned int n);
 int				ft_atoi(const char *str);
 void			*ft_calloc(unsigned int count, unsigned int size);
-char 			*ft_strdup(const char *s1);
+char			*ft_strdup(const char *s1);
 char			*ft_substr(char const *s, unsigned int start, unsigned int len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s1, char const *set);
@@ -65,6 +65,6 @@ void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_lstdelone(t_list *lst, void (*del)(void *));
 void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list			*ft_lstmap(t_list *l, void *(*f)(void *), void (*d)(void *));
 
 #endif

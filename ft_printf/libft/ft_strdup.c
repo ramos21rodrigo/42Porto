@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_strs.c                                    :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 18:55:13 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/17 14:11:09 by roramos          ###   ########.fr       */
+/*   Created: 2022/10/12 19:40:40 by roramos           #+#    #+#             */
+/*   Updated: 2022/10/12 19:54:02 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "libft.h"
 
-int	ft_print_str(char *s)
+char	*ft_strdup(const char *s1)
 {
-	if (!s)
-		return (write(1, "(null)", 6));
-	return (write(1, s, ft_strlen(s)));
-}
+	char	*pointer;
+	int		size;
 
-int	ft_print_chr(char c)
-{
-	return (write(1, &c, 1));
-}
-
-int	ft_print_percent(void)
-{
-	return (write(1, &"%", 1));
+	size = ft_strlen(s1) + 1;
+	pointer = malloc(size * sizeof(char));
+	if (pointer == NULL)
+		return (NULL);
+	ft_strlcpy(pointer, s1, size);
+	return (pointer);
 }

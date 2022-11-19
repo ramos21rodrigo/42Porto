@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 18:45:04 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/04 16:34:09 by roramos          ###   ########.fr       */
+/*   Created: 2022/10/12 23:10:02 by roramos           #+#    #+#             */
+/*   Updated: 2022/11/04 17:01:16 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, unsigned int n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned char	*str1;
-	unsigned char	*str2;
+	char	*start;
+	char	*str;
 
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	while (n--)
-	{
-		if (*str1 != *str2)
-			return (*str1 - *str2);
-		str1++;
-		str2++;
-	}
-	return (0);
+	if (!s1)
+		return (NULL);
+	str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!str)
+		return (NULL);
+	start = str;
+	while (*s1)
+		*str++ = *s1++;
+	while (*s2)
+		*str++ = *s2++;
+	*str = '\0';
+	return (start);
 }

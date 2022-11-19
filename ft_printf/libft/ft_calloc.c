@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_strs.c                                    :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 18:55:13 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/17 14:11:09 by roramos          ###   ########.fr       */
+/*   Created: 2022/10/12 19:31:13 by roramos           #+#    #+#             */
+/*   Updated: 2022/10/12 19:54:34 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "libft.h"
 
-int	ft_print_str(char *s)
+void	*ft_calloc(unsigned int count, unsigned int size)
 {
-	if (!s)
-		return (write(1, "(null)", 6));
-	return (write(1, s, ft_strlen(s)));
-}
+	void	*pointer;
 
-int	ft_print_chr(char c)
-{
-	return (write(1, &c, 1));
-}
-
-int	ft_print_percent(void)
-{
-	return (write(1, &"%", 1));
+	pointer = malloc(count * size);
+	if (pointer == NULL)
+		return (pointer);
+	ft_bzero(pointer, size * count);
+	return (pointer);
 }

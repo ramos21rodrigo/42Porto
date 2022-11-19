@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_strs.c                                    :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 18:55:13 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/17 14:11:09 by roramos          ###   ########.fr       */
+/*   Created: 2022/09/04 02:18:11 by roramos           #+#    #+#             */
+/*   Updated: 2022/10/10 11:13:57 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "libft.h"
 
-int	ft_print_str(char *s)
+void	*ft_memmove(void *dst, const void *src, unsigned int n)
 {
-	if (!s)
-		return (write(1, "(null)", 6));
-	return (write(1, s, ft_strlen(s)));
-}
+	unsigned int		i;
+	unsigned char		*dest;
+	const unsigned char	*sorc;
 
-int	ft_print_chr(char c)
-{
-	return (write(1, &c, 1));
-}
-
-int	ft_print_percent(void)
-{
-	return (write(1, &"%", 1));
+	dest = (unsigned char *)dst;
+	sorc = (unsigned char *)src;
+	i = 0;
+	if (!dest && !sorc)
+		return (NULL);
+	if (sorc < dest)
+	{
+		while (++i <= n)
+			dest[n - i] = sorc[n - i];
+		return (dst);
+	}
+	while (n-- > 0)
+		*dest++ = *sorc++;
+	return (dst);
 }

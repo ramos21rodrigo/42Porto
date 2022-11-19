@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_strs.c                                    :+:      :+:    :+:   */
+/*   ft_lstlast.C                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 18:55:13 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/17 14:11:09 by roramos          ###   ########.fr       */
+/*   Created: 2022/10/18 19:55:19 by roramos           #+#    #+#             */
+/*   Updated: 2022/10/19 15:44:07 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "libft.h"
 
-int	ft_print_str(char *s)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (!s)
-		return (write(1, "(null)", 6));
-	return (write(1, s, ft_strlen(s)));
-}
-
-int	ft_print_chr(char c)
-{
-	return (write(1, &c, 1));
-}
-
-int	ft_print_percent(void)
-{
-	return (write(1, &"%", 1));
+	while (lst)
+	{
+		if (!lst->next)
+			break ;
+		lst = lst->next;
+	}
+	return (lst);
 }

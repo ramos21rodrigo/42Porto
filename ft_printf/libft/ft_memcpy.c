@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_strs.c                                    :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 18:55:13 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/17 14:11:09 by roramos          ###   ########.fr       */
+/*   Created: 2022/09/02 19:57:45 by roramos           #+#    #+#             */
+/*   Updated: 2022/11/04 18:21:14 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "libft.h"
 
-int	ft_print_str(char *s)
+void	*ft_memcpy(void *dst, void *src, unsigned int n)
 {
-	if (!s)
-		return (write(1, "(null)", 6));
-	return (write(1, s, ft_strlen(s)));
-}
+	unsigned char	*dest;
+	unsigned char	*srce;
 
-int	ft_print_chr(char c)
-{
-	return (write(1, &c, 1));
-}
-
-int	ft_print_percent(void)
-{
-	return (write(1, &"%", 1));
+	if (!dst && !src)
+		return (NULL);
+	dest = dst;
+	srce = src;
+	while (n--)
+		*dest++ = *srce++;
+	return (dst);
 }

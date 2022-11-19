@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_strs.c                                    :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 18:55:13 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/17 14:11:09 by roramos          ###   ########.fr       */
+/*   Created: 2022/10/12 19:16:28 by roramos           #+#    #+#             */
+/*   Updated: 2022/10/12 19:29:15 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "libft.h"
 
-int	ft_print_str(char *s)
+int	ft_atoi(const char *str)
 {
-	if (!s)
-		return (write(1, "(null)", 6));
-	return (write(1, s, ft_strlen(s)));
-}
+	int	i;
+	int	sign;
+	int	result;
 
-int	ft_print_chr(char c)
-{
-	return (write(1, &c, 1));
-}
-
-int	ft_print_percent(void)
-{
-	return (write(1, &"%", 1));
+	i = 0;
+	sign = 1;
+	result = 0;
+	while (str[i] && (str[i] == '\f' || str[i] == '\t' || str[i] == ' '
+			|| str[i] == '\n' || str[i] == '\r' || str[i] == '\v'))
+		i++;
+	if ((str[i] == '-' || str[i] == '+') && str[i++] == '-')
+		sign = -1;
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+		result = (result * 10) + str[i++] - '0';
+	return (result * sign);
 }

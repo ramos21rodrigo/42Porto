@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_strs.c                                    :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 18:55:13 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/17 14:11:09 by roramos          ###   ########.fr       */
+/*   Created: 2022/09/06 18:18:43 by roramos           #+#    #+#             */
+/*   Updated: 2022/10/10 11:28:42 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "libft.h"
 
-int	ft_print_str(char *s)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	if (!s)
-		return (write(1, "(null)", 6));
-	return (write(1, s, ft_strlen(s)));
-}
+	size_t	i;
 
-int	ft_print_chr(char c)
-{
-	return (write(1, &c, 1));
-}
-
-int	ft_print_percent(void)
-{
-	return (write(1, &"%", 1));
+	i = 0;
+	if (dstsize == 0)
+	{
+		while (src[i])
+			i++;
+		return (i);
+	}
+	while (i < dstsize - 1 && src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (i < dstsize)
+		dst[i] = '\0';
+	while (src[i] != '\0')
+		i++;
+	return (i);
 }

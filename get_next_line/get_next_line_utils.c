@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: roramos <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:04:44 by roramos           #+#    #+#             */
 /*   Updated: 2022/11/11 18:20:39 by roramos          ###   ########.fr       */

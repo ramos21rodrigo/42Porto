@@ -6,38 +6,47 @@
 /*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 00:48:53 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/08 01:34:06 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/17 13:57:54 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printft.h"
+#include "ft_printf.h"
 #include "libft.h"
 
-char *convert_to_hex(int num, char *abc)
+int	convert_to_hex(unsigned int num, int word)
 {
-	char *hex_num;
-	int size;
+	int		i;
+	int		j;
+	int		temp;
+	char	hex[100];
 
-	size = ft_strlen(ft_itoa(num));
-	hex_num = malloc(size--);
-	if (!hex_num)
-		return (0);
-	hex_num[size--] = '\0';
-	while (num >= 16)
+	i = 1;
+	while (num != 0)
 	{
-		hex_num[size--] = abc[num % 16];
+		temp = num % 16;
+		if (temp < 10)
+			temp = temp + 48;
+		else
+			temp = temp + word;
+		hex[i++] = temp;
 		num /= 16;
 	}
-	hex_num[size] = abc[num];
-	return hex_num;
+	j = --i;
+	while (j > 0)
+		ft_print_chr(hex[j--]);
+	return (i);
 }
 
-int ft_print_lower_hex(int num)
+int	ft_print_lower_hex(int num)
 {
-	return (ft_print_str(convert_to_hex(num, "0123456789abcdef")));
+	if (num == 0)
+		return (ft_print_chr('0'));
+	return (convert_to_hex(num, 87));
 }
 
-int ft_print_upper_hex(int num)
+int	ft_print_upper_hex(int num)
 {
-	return (ft_print_str(convert_to_hex(num, "0123456789ABCDEF")));
+	if (num == 0)
+		return (ft_print_chr('0'));
+	return (convert_to_hex(num, 55));
 }

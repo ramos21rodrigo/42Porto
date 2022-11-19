@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_ptrs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:17:57 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/04 16:21:39 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/17 14:10:10 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft.h"
-#include "printft.h"
 
-int	ft_ptr_len(intptr_t num)
+int	ft_ptr_len(unsigned long num)
 {
 	int	len;
 
@@ -26,7 +26,7 @@ int	ft_ptr_len(intptr_t num)
 	return (len);
 }
 
-void	ft_put_ptr(intptr_t num)
+void	ft_put_ptr(unsigned long num)
 {
 	if (num >= 16)
 	{
@@ -42,11 +42,11 @@ void	ft_put_ptr(intptr_t num)
 	}
 }
 
-int ft_print_ptr(unsigned long long ptr)
+int	ft_print_ptr(unsigned long ptr)
 {
-	write(1, "0x", 2);
 	if (ptr == 0)
-		return(write(1, "0", 1) + 2);
-    ft_put_ptr(ptr);
+		return (write(1, "(nil)", 5));
+	write (1, "0x", 2);
+	ft_put_ptr(ptr);
 	return (ft_ptr_len(ptr) + 2);
 }

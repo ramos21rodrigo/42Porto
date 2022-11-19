@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_nums.c                                    :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 15:32:02 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/18 17:46:46 by roramos          ###   ########.fr       */
+/*   Created: 2022/10/17 17:13:48 by roramos           #+#    #+#             */
+/*   Updated: 2022/10/17 17:38:07 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "libft.h"
 
-static int	digit_count(unsigned int i)
+static int	digit_count(long int i)
 {
 	int	count;
 
 	count = 0;
+	if (i < 0)
+	{
+		i *= -1;
+		count++;
+	}
 	while (i > 0)
 	{
 		i /= 10;
@@ -26,44 +30,29 @@ static int	digit_count(unsigned int i)
 	return (count);
 }
 
-int	ft_uitoa(unsigned int n)
+char	*ft_itoa(int n)
 {
-	char			*str;
-	int				length;
-	unsigned int	i;
-	unsigned int	nb;
+	char		*str;
+	int			i;
+	long int	nb;
 
 	nb = n;
 	i = digit_count(nb);
 	if (nb == 0)
-		return (write(1, "0", 1));
+		return (ft_strdup("0"));
 	str = malloc(i * sizeof(char) + 1);
 	if (!str)
 		return (0);
 	str[i--] = 0;
+	if (nb < 0)
+	{
+		str[0] = '-';
+		nb *= -1;
+	}
 	while (nb > 0)
 	{
 		str[i--] = nb % 10 + '0';
 		nb /= 10;
 	}
-	length = write(1, str, ft_strlen(str));
-	free(str);
-	return (length);
-}
-
-int	ft_print_unum(unsigned int unum)
-{
-	return (ft_uitoa(unum));
-}
-
-int	ft_print_num(int num)
-{
-	char	*num_to_str;
-	int		length;
-
-	ft_putnbr_fd(num, 1);
-	num_to_str = ft_itoa(num);
-	length = ft_strlen(num_to_str);
-	free (num_to_str);
-	return (length);
+	return (str);
 }

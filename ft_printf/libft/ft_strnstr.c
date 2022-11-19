@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 18:45:04 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/04 16:34:09 by roramos          ###   ########.fr       */
+/*   Created: 2022/10/12 18:54:34 by roramos           #+#    #+#             */
+/*   Updated: 2022/11/04 16:55:45 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, unsigned int n)
+char	*ft_strnstr(const char *s1, const char *s2, unsigned int n)
 {
-	unsigned char	*str1;
-	unsigned char	*str2;
+	unsigned int	i;
+	unsigned int	j;
 
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	while (n--)
+	if (n == 0 && !*s2)
+		return ((char *)s1);
+	if (n == 0)
+		return (NULL);
+	if (!*s2)
+		return ((char *)s1);
+	i = 0;
+	while (s1[i] && i < n)
 	{
-		if (*str1 != *str2)
-			return (*str1 - *str2);
-		str1++;
-		str2++;
+		j = 0;
+		while (s2[j] == s1[i + j] && i + j < n)
+			if (!s2[++j])
+				return ((char *)s1 + i);
+		i++;
 	}
-	return (0);
+	return (NULL);
 }

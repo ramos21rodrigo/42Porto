@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: roramos <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:21:06 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/13 21:45:44 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/14 16:52:18 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,16 @@ char	*read_first_line(int fd, char *text)
 
 	if (!text)
 		text = ft_calloc(1, 1);
-	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
 	bytes_read = 1;
-	while (!ft_strchr(text, '\n') && bytes_read != 0)
+	while (bytes_read > 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 		{
+			free (text);
 			free (buffer);
 			return (NULL);
 		}
@@ -86,7 +87,7 @@ char	*clean_first_line(char *text)
 		free (text);
 		return (NULL);
 	}
-	str = ft_calloc((ft_strlen(text) - i + 1), sizeof(char));
+	str = ft_calloc((ft_strlen(text) - i + 1), sizeof(*text));
 	if (!str)
 		return (NULL);
 	while (text[++i])
@@ -101,7 +102,7 @@ char	*get_next_line(int fd)
 	char		*output_text;
 	static char	*text;
 
-	if (BUFFER_SIZE <= 0 || fd < 0 || fd > FOPEN_MAX)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	text = read_first_line(fd, text);
 	if (!text)
@@ -111,12 +112,12 @@ char	*get_next_line(int fd)
 	return (output_text);
 }
 
-/*int main()
+/* int main()
 {
 	int fd = open("a.txt", O_RDONLY);
 	char *a;
 
-	while ((a = get_next_line(0)))
+	while ((a = get_next_line(fd)))
 	{
 		printf("%s", a);
 	}

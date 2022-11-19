@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: roramos <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:51:42 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/11 18:41:33 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/14 16:50:24 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ char	*ft_strchr(const char *s, int c);
 char	*read_first_line(int fd, char *text);
 char	*get_line(char *text);
 char	*clean_first_line(char *text);
+int		ft_get_index_of(char *s1, char *s2);
+char	*ft_itoa(int n);
 void	*ft_calloc(unsigned int count, unsigned int size);
 #endif

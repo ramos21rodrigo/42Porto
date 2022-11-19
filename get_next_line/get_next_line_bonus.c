@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: roramos <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:51:36 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/13 21:11:40 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/14 17:14:09 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*read_first_line(int fd, char *text)
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 		{
+			free (text);
 			free (buffer);
 			return (NULL);
 		}
@@ -118,10 +119,10 @@ char	*get_next_line(int fd)
 	int fdc = open("c.txt", O_RDONLY);
 	char *a;
 
-	while ((a = get_next_line(fd)))
+	 while ((a = get_next_line(fd)))
 	{
 		printf("%s", a);
-	}   
+	}  
 
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
@@ -135,4 +136,4 @@ char	*get_next_line(int fd)
 	printf("%s", get_next_line(fd));
 
 	return 0; 
-} */
+}  */
