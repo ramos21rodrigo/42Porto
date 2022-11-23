@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 	map = get_map(argv[1]);
     map_check(map);
     mlx = mlx_init();
-    win = mlx_new_window(mlx, 900,600, "cona");
+    win = mlx_new_window(mlx, 64 , 64, "cona");
 	img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
 	printf("%s", relative_path);
 	mlx_put_image_to_window(mlx, win, img, 4,4);
