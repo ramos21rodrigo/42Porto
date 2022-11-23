@@ -18,7 +18,7 @@
 typedef struct map {
 	char	**map;
 	int		rows;
-	int		column;
+	int		columns;
 }				t_map;
 
 t_map	*get_map(char *map_file);

@@ -52,7 +52,7 @@ t_map	*get_map(char *map_file)
 	if (!map)
 		handle_errors("a");
 	map->rows = get_number_of_rows(map_file);
-	map->column = get_number_of_columns(map_file);
+	map->columns = get_number_of_columns(map_file);
 	fd = open(map_file, O_RDONLY);
 	temp_map = malloc(map->rows * sizeof(char *));
 	i = -1;
