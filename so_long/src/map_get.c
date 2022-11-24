@@ -6,12 +6,11 @@
 /*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:42:56 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/23 19:05:56 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/24 14:54:02 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include "libft.h"
+#include "includes/so_long.h"
 
 size_t	get_number_of_columns(char *map_file)
 {
@@ -41,23 +40,19 @@ size_t	get_number_of_rows(char *map_file)
 	return (size);
 }
 
-t_map	*get_map(char *map_file)
+void	get_map(t_props *props, char *map_file)
 {
-	t_map	*map;
+	t_map	map;
 	char	**temp_map;
 	int		i;
 	int		fd;
 
-	map = malloc(sizeof(map));
-	if (!map)
-		handle_errors("a");
-	map->rows = get_number_of_rows(map_file);
-	map->columns = get_number_of_columns(map_file);
+	MAP.rows = get_number_of_rows(map_file);
+	MAP.columns = get_number_of_columns(map_file);
 	fd = open(map_file, O_RDONLY);
-	temp_map = malloc(map->rows * sizeof(char *));
+	temp_map = malloc(MAP.rows * sizeof(char *));
 	i = -1;
-	while (++i < map->rows)
+	while (++i < MAP.rows)
 		temp_map[i] = ft_strtrim(get_next_line(fd), "\n");
-	map->map = temp_map;
-	return (map);
+	MAP.map = temp_map;
 }
