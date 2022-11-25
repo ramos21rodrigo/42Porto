@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 20:27:18 by roramos           #+#    #+#             */
-/*   Updated: 2022/10/19 17:29:23 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/25 17:19:26 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ typedef struct s_list
 }				t_list;
 
 //ft_printf
-int	ft_printf(const char *format, ...);
-int	ft_print_str(char *s);
-int	ft_print_chr(char c);
-int	ft_print_ptr(unsigned long ptr);
-int	ft_print_num(int num);
-int	ft_print_unum(int unsigned num);
-int	ft_print_lower_hex(int num);
-int	ft_print_upper_hex(int num);
-int	ft_print_percent(void);
+int		ft_printf(const char *format, ...);
+int		ft_print_str(char *s);
+int		ft_print_chr(char c);
+int		ft_print_ptr(unsigned long ptr);
+int		ft_print_num(int num);
+int		ft_print_unum(int unsigned num);
+int		ft_print_lower_hex(int num);
+int		ft_print_upper_hex(int num);
+int		ft_print_percent(void);
 
 //get_next_line
 char	*get_next_line(int fd);

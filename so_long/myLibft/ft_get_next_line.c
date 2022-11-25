@@ -111,4 +111,3 @@ char	*get_next_line(int fd)
 	text[fd] = clean_first_line(text[fd]);
 	return (output_text);
 }
-

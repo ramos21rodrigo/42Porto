@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roramos <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:42:56 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/24 14:54:02 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/25 17:31:10 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	get_map(t_props *props, char *map_file)
 	int		i;
 	int		fd;
 
-	MAP.rows = get_number_of_rows(map_file);
-	MAP.columns = get_number_of_columns(map_file);
+	props->map.rows = get_number_of_rows(map_file);
+	props->map.columns = get_number_of_columns(map_file);
 	fd = open(map_file, O_RDONLY);
-	temp_map = malloc(MAP.rows * sizeof(char *));
+	temp_map = malloc(props->map.rows * sizeof(char *));
 	i = -1;
-	while (++i < MAP.rows)
+	while (++i < props->map.rows)
 		temp_map[i] = ft_strtrim(get_next_line(fd), "\n");
-	MAP.map = temp_map;
+	props->map.map = temp_map;
 }
