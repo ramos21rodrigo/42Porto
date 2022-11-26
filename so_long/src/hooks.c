@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 12:06:09 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/25 18:36:52 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/26 19:02:19 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	check_collison(t_props *props)
 		props->map.map[props->player_x][props->player_y] = FLOOR;
 		props->tilemap[props->player_x][props->player_y].img
 			= props->images.grass;
-		props->map.collectibles--;
+		if (!--props->map.collectibles)
+			props->tilemap[props->map.door_x][props->map.door_y].img = props->images.open_door;
 		return ;
 	}
 	if (props->map.map[props->player_x][props->player_y] == EXIT
@@ -34,6 +35,10 @@ void	player_movement(t_props *props, bool horizontal, int speed)
 {
 	if (horizontal)
 	{
+		if (speed < 0)
+			props->images.is_left = true;
+		else
+			props->images.is_left = false;
 		if (props->map.map[props->player_x][props->player_y + speed] == WALL)
 			return ;
 		props->player_y += speed;
@@ -45,8 +50,6 @@ void	player_movement(t_props *props, bool horizontal, int speed)
 		props->player_x += speed;
 	}
 	check_collison(props);
-	mlx_clear_window(props->mlx.mlx_ptr, props->mlx.win_ptr);
-	render_tilemap(props);
 	count_steps(props);
 }
 
@@ -65,8 +68,51 @@ int	on_key_press(int key_code, t_props *props)
 	return (0);
 }
 
+void	animate_doggo(t_props *props)
+{
+	void	*current_player;
+
+	if(!props->images.current_player_idle)
+	{
+		if (props->images.is_left)
+			current_player = props->images.player_left_idle_1;
+		else
+			current_player = props->images.player_idle_1;
+		props->images.current_player_idle = 1;
+	}
+	else
+	{
+		if (props->images.is_left)
+			current_player = props->images.player_left_idle_2;
+		else
+			current_player = props->images.player_idle_2;
+		props->images.current_player_idle = 0;
+	}
+	mlx_put_image_to_window(props->mlx.mlx_ptr, props->mlx.win_ptr,
+		current_player, TILES_SIZE * props->player_y,
+		TILES_SIZE * props->player_x);
+
+}
+
+int	render(t_props *props)
+{
+	static int frames;
+
+	if (++frames < FPS)
+		return (0);
+	frames = 0;
+	mlx_clear_window(props->mlx.mlx_ptr, props->mlx.win_ptr);
+	render_tilemap(props);
+	animate_doggo(props);
+	mlx_string_put(props->mlx.mlx_ptr, props->mlx.win_ptr,
+		TILES_SIZE * props->player_y + 30 - (ft_strlen(ft_itoa(props->steps)) * 2),
+		TILES_SIZE * props->player_x + 52, -1, ft_itoa(props->steps));
+	return (0);
+}
+
 void	hooks(t_props *props)
 {
+	mlx_loop_hook(props->mlx.mlx_ptr, render, props);
 	mlx_hook(props->mlx.win_ptr, 2, 1, on_key_press, props);
 	mlx_hook(props->mlx.win_ptr, 17, (1L << 2), close_program, props);
 	mlx_loop(props->mlx.mlx_ptr);

@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:42:56 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/25 18:27:18 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/26 17:26:05 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	check_path(t_props *props)
 		while (++j < props->map.columns)
 			path_finder[i][j] = 0;
 	}
+
+	find_position_of(props);
 	find_path(props, props->player_x, props->player_y, path_finder);
 	if (props->map.reachable_cols != props->map.collectibles)
 		handle_errors("!c");
@@ -96,11 +98,7 @@ void	check_for_icons_and_path(t_props *props)
 		while (++var[3] < props->map.columns)
 		{
 			if (props->map.map[var[2]][var[3]] == PLAYER)
-			{
 				var[0]++;
-				props->player_x = var[2];
-				props->player_y = var[3];
-			}
 			else if (props->map.map[var[2]][var[3]] == COLLECTIBLE)
 				props->map.collectibles ++;
 			else if (props->map.map[var[2]][var[3]] == EXIT)

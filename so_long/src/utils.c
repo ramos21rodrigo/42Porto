@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:50:13 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/25 18:36:40 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/26 18:06:51 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ void	check_for_errors_in_icons(t_props *props, int p, int e)
 		handle_errors("E");
 }
 
+
 void	count_steps(t_props *props)
-{
-	write(1, "Steps:", 6);
-	ft_putnbr_fd(++props->steps, 1);
-	write(1, "\n", 1);
+{	
+	ft_printf("Steps: %d\n", ++props->steps);
 }

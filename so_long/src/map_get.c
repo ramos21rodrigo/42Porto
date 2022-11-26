@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:42:56 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/25 17:31:10 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/26 16:30:07 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,30 @@ void	get_map(t_props *props, char *map_file)
 	while (++i < props->map.rows)
 		temp_map[i] = ft_strtrim(get_next_line(fd), "\n");
 	props->map.map = temp_map;
+}
+
+void	find_position_of(t_props *props)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < props->map.rows)
+	{
+		j = -1;
+		while (++j < props->map.columns)
+		{
+			if (props->map.map[i][j] == PLAYER)
+			{
+				props->player_x = i;
+				props->player_y = j;
+			}
+			else if(props->map.map[i][j] == EXIT)
+			{
+				props->map.door_x = i;
+				props->map.door_y = j;
+			}
+		}
+	}
+
 }
