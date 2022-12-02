@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 12:06:09 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/27 18:43:29 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/29 16:04:01 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_collison(t_props *props)
 	{
 		ft_printf("\n\nYou won!");
 		ft_printf(" In the state of this life you don't need enemies!");
-		close_program();
+		close_program(props);
 	}
 }
 
@@ -58,7 +58,7 @@ void	player_movement(t_props *props, bool horizontal, int speed)
 int	on_key_press(int key_code, t_props *props)
 {
 	if (key_code == ESC)
-		close_program();
+		close_program(props);
 	else if (key_code == W || key_code == UP)
 		player_movement(props, false, -1);
 	else if (key_code == A || key_code == LEFT)

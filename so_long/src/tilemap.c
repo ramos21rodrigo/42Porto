@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:32:43 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/26 18:42:44 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/29 16:06:25 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ void	create_tilemap(t_props *props)
 
 	props->tilemap = malloc(1 + props->map.rows * sizeof(t_tilemap *));
 	if (!props->tilemap)
-		handle_errors("!tilemap");
+		handle_errors("!tilemap", props);
 	i = -1;
 	while (++i < props->map.rows)
 	{
 		props->tilemap[i] = malloc(1 + props->map.columns * sizeof(t_tilemap));
 		if (!props->tilemap)
-			handle_errors("!tilemap");
+			handle_errors("!tilemap", props);
 		j = -1;
 		while (++j < props->map.columns)
 		{

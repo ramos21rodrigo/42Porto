@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:42:56 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/27 16:56:14 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/29 16:07:08 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	get_number_of_columns(char *map_file)
 	return (size);
 }
 
-size_t	get_number_of_rows(char *map_file)
+size_t	get_number_of_rows(char *map_file, t_props *props)
 {
 	size_t	size;
 	int		fd;
@@ -31,11 +31,11 @@ size_t	get_number_of_rows(char *map_file)
 	size = 0;
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
-		handle_errors("Error\nCouldn't open map's file");
+		handle_errors("Error\nCouldn't open map's file",props);
 	while (get_next_line(fd))
 		size++;
 	if (size == 0)
-		handle_errors("Error\nMap file is empty");
+		handle_errors("Error\nMap file is empty",props);
 	close(fd);
 	return (size);
 }
@@ -46,7 +46,7 @@ void	get_map(t_props *props, char *map_file)
 	int		i;
 	int		fd;
 
-	props->map.rows = get_number_of_rows(map_file);
+	props->map.rows = get_number_of_rows(map_file, props);
 	props->map.columns = get_number_of_columns(map_file);
 	fd = open(map_file, O_RDONLY);
 	temp_map = malloc(props->map.rows * sizeof(char *));

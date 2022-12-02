@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:45:48 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/27 18:35:42 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/29 16:08:43 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_props
 	int					player_y;
 }				t_props;
 
-void	check_ber(char *filename);
+void	check_ber(char *filename, t_props *props);
 void	get_map(t_props *props, char *map_file);
 void	check_square(t_props *props);
 void	check_walls(t_props *props);
@@ -89,11 +89,11 @@ void	find_path(t_props *props, int x, int y, int **path_finder);
 void	check_path(t_props *props);
 void	check_for_icons_and_path(t_props *props);
 void	map_check(t_props *props);
-void	handle_errors(char *message);
+void	handle_errors(char *message, t_props *props);
 void	hooks(t_props *props);
 int		render(t_props *props);
 int		on_key_press(int key_code, t_props *props);
-int		close_program(void);
+int		close_program(t_props *props);
 void	render_tilemap(t_props *props);
 void	count_steps(t_props *props);
 void	tilemap(t_props *props);

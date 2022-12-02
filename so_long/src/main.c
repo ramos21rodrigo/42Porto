@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:45:05 by roramos           #+#    #+#             */
-/*   Updated: 2022/11/27 17:06:31 by roramos          ###   ########.fr       */
+/*   Updated: 2022/11/29 16:10:22 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int	main(int argc, char *argv[])
 	t_props	props;
 
 	if (argc != 2)
-		handle_errors("Error\nInvalid amount of arguments!");
-	check_ber(argv[1]);
+		handle_errors("Error\nInvalid amount of arguments!", &props);
+	check_ber(argv[1], &props);
 	init_props(&props);
 	get_map(&props, argv[1]);
 	map_check(&props);
