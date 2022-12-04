@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 16:34:55 by roramos           #+#    #+#             */
-/*   Updated: 2022/12/02 15:47:08 by roramos          ###   ########.fr       */
+/*   Updated: 2022/12/04 18:44:19 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,5 @@ int main(int argc, char const *argv[])
 	ft_printf("a:");
 	while (++i <= a_stack -> top)
 		ft_printf("%d", a_stack->list[i]);
-	ft_printf("\nb:");
-	i = -1;
-	while (++i <= b_stack -> top)
-		ft_printf("%d", b_stack->list[i]);
-
-	execute(RA, a_stack, b_stack);
-
-	i = -1;
-	ft_printf("\n\na:");
-	while (++i <= a_stack -> top)
-		ft_printf("%d", a_stack->list[i]);
-	i = -1;
-	ft_printf("\nb:");
-	while (++i <= b_stack -> top)
-		ft_printf("%d", b_stack->list[i]);
+	ft_printf("\n%d", find_middle_point(0, a_stack));
 }
