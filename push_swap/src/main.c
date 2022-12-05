@@ -40,27 +40,6 @@ t_stack	*init_b_stack(int length)
 	return(b_stack);
 }
 
-void	push_by_chunks(t_stack *a_stack, t_stack *b_stack, int chunks)
-{
-	int middle_point;
-
-	middle_point = find_middle_point(0, a_stack);
-	while (a_stack->list[a_stack->top] < middle_point)
-		execute(PB, a_stack, b_stack);
-	while (a_stack->list[0] < middle_point)
-	{
-		execute(RRA, a_stack, b_stack);
-		execute(PB, a_stack, b_stack);
-	}
-	while (a_stack->top - 1 > b_stack->top / chunks)
-	{
-		if (a_stack->list[a_stack->top] < middle_point)
-			execute(PB, a_stack, b_stack);
-		else
-			execute(RA, a_stack, b_stack);
-	}
-}
-
 int main(int argc, char const *argv[])
 {
 	t_stack *a_stack;
@@ -75,30 +54,10 @@ int main(int argc, char const *argv[])
 		push_by_chunks(a_stack, b_stack, ++chunks);
 	if (a_stack->list[a_stack->top] > a_stack->list[a_stack->top - 1])
 		execute(SA, a_stack, b_stack);
-	
 	while (b_stack->top != -1)
-	{
-		i = 1;
-		bigger = find_bigger_one(b_stack);
-		while(b_stack->list[b_stack->top] != bigger)
-		{
-			execute(RB, a_stack, b_stack);
-			i++;
-		}
-		execute(PA, a_stack, b_stack);
-		while (--i != 0)
-			execute(RRB, a_stack, b_stack);
-		
-	}
+		push_by_order(a_stack, b_stack);
 
-	/* while (b_stack->top != -1)
-	{
-		if (b_stack->list[b_stack->top] < b_stack->list[b_stack->top - 1])
-			execute(SB, a_stack, b_stack);
-		execute(PA, a_stack, b_stack);	
-	} */
-
-	ft_printf("\n");
+			ft_printf("\n");
 	i = a_stack->top;
 	int j = b_stack->top;
 	while(i >= 0 || j >= 0)

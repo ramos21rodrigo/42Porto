@@ -40,5 +40,7 @@ void execute(int op, t_stack *a_s, t_stack *b_s);
 bool	is_empty(t_stack *stack);
 int	find_middle_point(int start_position, t_stack *stack);
 int	find_bigger_one(t_stack *stack);
+void push_by_chunks(t_stack *a_stack, t_stack *b_stack, int chunks);
+void push_by_order(t_stack *a_stack, t_stack *b_stack);
 
 #endif
