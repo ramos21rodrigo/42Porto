@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 16:45:57 by roramos           #+#    #+#             */
-/*   Updated: 2022/12/04 17:42:45 by roramos          ###   ########.fr       */
+/*   Updated: 2022/12/05 18:29:19 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ int	*parse_input(int argc, const char **argv);
 void execute(int op, t_stack *a_s, t_stack *b_s);
 bool	is_empty(t_stack *stack);
 int	find_middle_point(int start_position, t_stack *stack);
+int	find_bigger_one(t_stack *stack);
 
 #endif
