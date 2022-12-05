@@ -45,13 +45,23 @@ int main(int argc, char const *argv[])
 	t_stack *a_stack;
 	t_stack *b_stack;
 	int	i;
+	int middle_point;
 
 	a_stack = init_a_stack(parse_input(argc, argv), argc - 1);
 	b_stack = init_b_stack(argc - 1);
-
-	i = -1;
-	ft_printf("a:");
-	while (++i <= a_stack -> top)
-		ft_printf("%d", a_stack->list[i]);
-	ft_printf("\n%d", find_middle_point(0, a_stack));
+	middle_point = find_middle_point(0, a_stack);
+	while (a_stack->list[a_stack->top] < middle_point)
+		execute(PB, a_stack, b_stack);
+	while (a_stack->list[0] < middle_point)
+	{
+		execute(RRA, a_stack, b_stack);
+		execute(PB, a_stack, b_stack);
+	}
+	execute(RA, a_stack, b_stack);
+	while (a_stack->stack_size / 2 < a_stack->top)
+	{
+		if (a_stack->list[a_stack->top] < middle_point)
+			execute(PB, a_stack, b_stack);
+		execute(RA, a_stack, b_stack);
+	}
 }

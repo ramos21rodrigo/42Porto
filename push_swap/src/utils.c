@@ -19,7 +19,7 @@ void insertion_sort(int *arr, int n)
 	int	j;
 
 	i = 0;
-	while (++i <= n)
+	while (++i < n)
 	{
 		key = arr[i];
 		j = i - 1;
