@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 16:45:57 by roramos           #+#    #+#             */
-/*   Updated: 2022/12/05 18:29:19 by roramos          ###   ########.fr       */
+/*   Updated: 2022/12/06 17:32:47 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include <stdbool.h>
+#include <limits.h>
 
 # define SA 0
 # define SB 1
@@ -42,5 +43,8 @@ int	find_middle_point(int start_position, t_stack *stack);
 int	find_bigger_one(t_stack *stack);
 void push_by_chunks(t_stack *a_stack, t_stack *b_stack, int chunks);
 void push_by_order(t_stack *a_stack, t_stack *b_stack);
+void	is_in_order(t_stack *stack);
+bool	is_on_the_first_half(t_stack *stack, int bigger);
+void	is_special_case(t_stack *stack);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   order.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/06 18:10:56 by roramos           #+#    #+#             */
+/*   Updated: 2022/12/06 18:10:56 by roramos          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
 void push_by_chunks(t_stack *a_stack, t_stack *b_stack, int chunks)
@@ -23,19 +35,25 @@ void push_by_chunks(t_stack *a_stack, t_stack *b_stack, int chunks)
 
 void push_by_order(t_stack *a_stack, t_stack *b_stack)
 {
-	int i;
 	int bigger;
 
-	i = 1;
 	bigger = find_bigger_one(b_stack);
-	if (b_stack->list[b_stack->top - 1] == bigger)
+	if (b_stack->top != 0 && b_stack->list[b_stack->top - 1] == bigger)
 		execute(SB, a_stack, b_stack);
-	while (b_stack->list[b_stack->top] != bigger)
+	if(is_on_the_first_half(b_stack, bigger))
 	{
-		execute(RB, a_stack, b_stack);
-		i++;
+		while (b_stack->list[b_stack->top] != bigger)
+		{
+			if (b_stack->top != 0 && b_stack->list[b_stack->top - 1] == bigger)
+				execute(SB, a_stack, b_stack);
+			else
+				execute(RB, a_stack, b_stack);
+		}
+		execute(PA, a_stack, b_stack);
 	}
-	execute(PA, a_stack, b_stack);
-	while (--i != 0)
-		execute(RRB, a_stack, b_stack);
+	else{
+		while (b_stack->list[b_stack->top] != bigger)
+			execute(RRB, a_stack, b_stack);
+		execute(PA, a_stack, b_stack);
+	}
 }
