@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 16:45:57 by roramos           #+#    #+#             */
-/*   Updated: 2022/12/06 17:32:47 by roramos          ###   ########.fr       */
+/*   Updated: 2022/12/08 20:27:05 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,16 @@ typedef struct s_stack
 	int	top;
 }				t_stack;
 
-int	*parse_input(int argc, const char **argv); 
-void execute(char *op, t_stack *a_s, t_stack *b_s);
+int		*parse_input(int argc, const char **argv);
+int		find_third_point(t_stack *stack);
+int		find_bigger_one(t_stack *stack);
+int		find_smaller_one(t_stack *stack);
 bool	is_empty(t_stack *stack);
-int	find_middle_point(int start_position, t_stack *stack);
-int	find_bigger_one(t_stack *stack);
-void push_by_chunks(t_stack *a_stack, t_stack *b_stack, int chunks);
-void push_by_order(t_stack *a_stack, t_stack *b_stack);
-void	is_in_order(t_stack *stack);
 bool	is_on_the_first_half(t_stack *stack, int bigger);
-void	is_special_case(t_stack *stack);
+void	execute(char *op, t_stack *a_s, t_stack *b_s);
+void	push_by_order(t_stack *a_stack, t_stack *b_stack);
+void	is_in_order(t_stack *stack);
+void	is_special_case(t_stack *a_stack, t_stack *b_stack);
+void	push_by_chunks(t_stack *a_stack, t_stack *b_stack, int point);
 
 #endif

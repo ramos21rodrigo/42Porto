@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_utils.c                                 :+:      :+:    :+:   */
+/*   operations_utils_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:00:46 by roramos           #+#    #+#             */
-/*   Updated: 2022/12/06 18:03:44 by roramos          ###   ########.fr       */
+/*   Updated: 2022/12/08 19:50:34 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/push_swap_bonus.h"
+#include "../includes/push_swap_bonus.h"
 
 bool	is_empty(t_stack *stack)
 {
@@ -26,11 +26,11 @@ bool	is_in_order(t_stack *stack)
 		ft_printf("OK\n");
 		exit(EXIT_SUCCESS);
 	}
-	i = -1;	
+	i = -1;
 	while (++i < stack->top)
 	{
-		if(stack->list[i] < stack->list[i + 1])
-			return (false); 
+		if (stack->list[i] < stack->list[i + 1])
+			return (false);
 	}
 	return (true);
 }

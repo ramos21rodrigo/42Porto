@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 20:27:18 by roramos           #+#    #+#             */
-/*   Updated: 2022/12/06 14:12:48 by roramos          ###   ########.fr       */
+/*   Updated: 2022/12/08 19:21:33 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_list
 }				t_list;
 
 //Own
-void	ft_handle_errors();
+void	ft_handle_errors(void);
 
 //ft_printf
 int		ft_printf(const char *format, ...);

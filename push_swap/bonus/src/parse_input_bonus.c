@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_input.c                                      :+:      :+:    :+:   */
+/*   parse_input_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 13:35:52 by roramos           #+#    #+#             */
-/*   Updated: 2022/12/06 18:19:27 by roramos          ###   ########.fr       */
+/*   Updated: 2022/12/08 19:54:42 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@ void	check_duplicates(int *stack, int length)
 		{
 			if (stack[i] == stack[j])
 			{
-				free(stack);	
+				free(stack);
 				ft_handle_errors();
 			}
 		}
 	}
-
 }
 
 long	ft_latoi(const char *str)
@@ -54,30 +53,30 @@ long	ft_latoi(const char *str)
 
 int	check_int(const char *arg)
 {
-	long n_arg;
+	long	n_arg;
 
 	n_arg = ft_latoi(arg);
 	if ((n_arg <= INT_MIN) || (n_arg >= INT_MAX))
 		ft_handle_errors();
-    if (!n_arg && *arg != '0')
+	if (!n_arg && *arg != '0')
 		ft_handle_errors();
 	return ((int)n_arg);
 }
 
 int	*parse_input(int argc, const char **argv)
 {
-	int *stack;
+	int	*stack;
 	int	i;
 	int	j;
 
 	if (argc < 2)
 		exit(EXIT_FAILURE);
 	stack = malloc(sizeof(int) * argc - 1);
-    if (!stack)
+	if (!stack)
 		ft_handle_errors();
 	i = argc;
 	j = -1;
-    while (--i > 0)
+	while (--i > 0)
 		stack[++j] = check_int(argv[i]);
 	check_duplicates(stack, argc - 1);
 	return (stack);
