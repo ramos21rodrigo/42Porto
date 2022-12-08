@@ -15,19 +15,19 @@
 
 # include "../libft/libft.h"
 # include <stdbool.h>
-#include <limits.h>
+# include <limits.h>
 
-# define SA 0
-# define SB 1
-# define SS 2
-# define PA 3
-# define PB 4
-# define RA 5
-# define RB 6
-# define RR 7
-# define RRA 8
-# define RRB 9
-# define RRR 10
+# define SA "sa"
+# define SB "sb"
+# define SS "ss"
+# define PA "pa"
+# define PB "pb"
+# define RA "ra"
+# define RB "rb"
+# define RR "rr"
+# define RRA "rra"
+# define RRB "rrb"
+# define RRR "rrr"
 
 typedef struct s_stack
 {
@@ -37,7 +37,7 @@ typedef struct s_stack
 }				t_stack;
 
 int	*parse_input(int argc, const char **argv); 
-void execute(int op, t_stack *a_s, t_stack *b_s);
+void execute(char *op, t_stack *a_s, t_stack *b_s);
 bool	is_empty(t_stack *stack);
 int	find_middle_point(int start_position, t_stack *stack);
 int	find_bigger_one(t_stack *stack);

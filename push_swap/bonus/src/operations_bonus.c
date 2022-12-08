@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/push_swap_bonus.h"
 
 void	swap(t_stack *stack)
 {
@@ -83,5 +83,6 @@ void execute(char *op, t_stack *a_s, t_stack *b_s)
 	if (ft_strnstr(op, PB, 5))
 		if (!is_empty(a_s))
 			push(b_s, pop(a_s));
-	ft_printf("%s\n", op);
+	ft_printf("KO\n");
+	exit(EXIT_SUCCESS);
 }
