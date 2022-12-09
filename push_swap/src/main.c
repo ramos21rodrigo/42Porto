@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 16:34:55 by roramos           #+#    #+#             */
-/*   Updated: 2022/12/08 22:07:29 by roramos          ###   ########.fr       */
+/*   Updated: 2022/12/09 00:06:13 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,19 @@ int	main(int argc, char const *argv[])
 
 	a_stack = init_a_stack(parse_input(argc, argv), argc - 1);
 	b_stack = init_b_stack(argc - 1);
-	is_in_order(&a_stack);
+	if(is_in_order(&a_stack))
+		exit(EXIT_SUCCESS);
 	is_special_case(&a_stack, &b_stack);
 	
-	/* while (a_stack.top > 1)
+	pass_to_indexes(&a_stack);
+	push_binary(&a_stack, &b_stack);
+/* 	while (a_stack.top > 1)
 		push_by_chunks(&a_stack, &b_stack,
-			find_third_point(&a_stack)); */
+			find_third_point(&a_stack)); 
 	if (a_stack.list[a_stack.top] > a_stack.list[a_stack.top - 1])
 		execute(SA, &a_stack, &b_stack);
 	while (b_stack.top != -1)
-		push_by_order(&a_stack, &b_stack);
+		push_by_order(&a_stack, &b_stack); */
 
 /* 	int i = a_stack.top + 1;
 	int j = b_stack.top + 1;
@@ -66,10 +69,11 @@ int	main(int argc, char const *argv[])
 			j--;
 		ft_printf("%d  %d\n", a_stack.list[i], b_stack.list[j]);
 	}
-	ft_printf("_  _\na  b");
-	free_stack(&a_stack);
-	free_stack(&b_stack); */
+	ft_printf("_  _\na  b"); */
 	
+	free_stack(&a_stack);
+	free_stack(&b_stack);
+
 }
 
 	

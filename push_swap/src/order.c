@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:10:56 by roramos           #+#    #+#             */
-/*   Updated: 2022/12/08 22:07:13 by roramos          ###   ########.fr       */
+/*   Updated: 2022/12/09 00:06:09 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,33 @@ void	push_by_order(t_stack *a_stack, t_stack *b_stack)
 		while (b_stack->list[b_stack->top] != bigger)
 			execute(RRB, a_stack, b_stack);
 		execute(PA, a_stack, b_stack);
+	}
+}
+
+void	push_binary(t_stack *a_stack, t_stack *b_stack)
+{
+	int	max_bits;
+	int	num;
+	int	i;
+	int	j;
+
+	max_bits = 0;
+	num = find_bigger_one(a_stack);
+	while((num >> max_bits) != 0)
+		++max_bits;
+	i = -1;
+	while (++i < max_bits)
+	{
+		j = -1;
+		while (++j < a_stack->stack_size)
+		{
+			num = a_stack->list[a_stack->top];
+			if(((num >> i)&1) == 1)
+				execute(RA, a_stack, b_stack);
+			else
+				execute(PB, a_stack, b_stack);
+		}
+		while (b_stack->top != -1)
+			execute(PA, a_stack, b_stack);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:00:46 by roramos           #+#    #+#             */
-/*   Updated: 2022/12/08 20:34:32 by roramos          ###   ########.fr       */
+/*   Updated: 2022/12/08 23:51:45 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	is_empty(t_stack *stack)
 	return (stack->top == -1);
 }
 
-void	is_in_order(t_stack *stack)
+bool	is_in_order(t_stack *stack)
 {
 	int	i;
 
@@ -27,9 +27,9 @@ void	is_in_order(t_stack *stack)
 	while (++i < stack->top)
 	{
 		if (stack->list[i] < stack->list[i + 1])
-			return ;
+			return (false);
 	}
-	exit(EXIT_SUCCESS);
+	return (true);
 }
 
 bool	is_on_the_first_half(t_stack *stack, int bigger)
@@ -43,6 +43,34 @@ bool	is_on_the_first_half(t_stack *stack, int bigger)
 			return (false);
 	}
 	return (true);
+}
+
+void	pass_to_indexes(t_stack *stack)
+{
+	int	*order;
+	int	*new_list;
+	int	i;
+	int	j;
+
+	order = malloc((stack->stack_size) * sizeof(int));
+	new_list = malloc((stack->stack_size) * sizeof(int));
+	i = -1;
+	while (++i < stack-> stack_size)
+		order[i] = stack->list[i];
+	insertion_sort(order, stack->stack_size);
+	i = -1;
+	while (++i < stack->stack_size)
+	{
+		j = -1;
+		while (++j < stack->stack_size)
+			if (stack->list[i] == order[j])
+				new_list[i] = j;
+	}
+	i = -1;
+	while (++i < stack->stack_size)
+		stack->list[i] = new_list[i];
+	free(order);
+	free(new_list);
 }
 
 void	is_special_case(t_stack *a_stack, t_stack *b_stack)

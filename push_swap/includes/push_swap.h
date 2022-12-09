@@ -6,7 +6,7 @@
 /*   By: roramos <roramos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 16:45:57 by roramos           #+#    #+#             */
-/*   Updated: 2022/12/08 20:27:05 by roramos          ###   ########.fr       */
+/*   Updated: 2022/12/08 23:51:57 by roramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,11 @@ bool	is_empty(t_stack *stack);
 bool	is_on_the_first_half(t_stack *stack, int bigger);
 void	execute(char *op, t_stack *a_s, t_stack *b_s);
 void	push_by_order(t_stack *a_stack, t_stack *b_stack);
-void	is_in_order(t_stack *stack);
+bool	is_in_order(t_stack *stack);
 void	is_special_case(t_stack *a_stack, t_stack *b_stack);
 void	push_by_chunks(t_stack *a_stack, t_stack *b_stack, int point);
+void	pass_to_indexes(t_stack *stack);
+void	insertion_sort(int *arr, int n);
+void	push_binary(t_stack *a_stack, t_stack *b_stack);
 
 #endif
