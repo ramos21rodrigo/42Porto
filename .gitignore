@@ -6,7 +6,3 @@
 *.gch
 *.a
 
-libft/
-ft_printf/
-get_next_line/
-so_long/
